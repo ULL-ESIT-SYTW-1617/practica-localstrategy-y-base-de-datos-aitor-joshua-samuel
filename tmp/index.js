@@ -1,6 +1,7 @@
 var inquirer = require('inquirer');
 var fs = require('fs-extended');
 var readjson = require('readjson');
+var bcrypt = require('bcrypt');
 
 //login, name, password (encrypted)}
 
@@ -33,36 +34,43 @@ inquirer.prompt(questions).then(function(answers) {
     });
     promise.then(function(file) {
 
+        var passwd;
         var id_ = file.users.length + 1;
         var config = JSON.stringify(file);
         console.log(config);
         var data = JSON.parse(config);
         console.log(data);
-        data.users.push({
-            id: id_,
-            login: answers.login,
-            name: answers.name,
-            password: answers.password
+        var hashing = new Promise(function(resolve, reject) {
+            bcrypt.genSalt(8, function(err, salt) {
+                bcrypt.hash(answers.password, salt, function(err, hash) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(hash);
+                    }
+                });
+            });
         });
-        console.log(data);
+        hashing.then(function(hashpass) {
 
-        fs.writeJSON('./users.json', data, function(err) {
-            if (err) {
-                console.log(err);
-            }
+            data.users.push({
+                id: id_,
+                login: answers.login,
+                name: answers.name,
+                password: hashpass
+            });
+            fs.writeJSON('./users.json', data, function(err) {
+                if (err) {
+                    console.log(err);
+                }
+            });
+
+        }, function(err) {
+            console.log("Fallo");
         });
+
     }, function(err) {
         console.log("Fallo");
     });
 
-
-
-    //console.log(txt);
-    //console.log(data);
-    /*  data.employees.push({
-          login: answers.login,
-          name: answers.name,
-          password: answers.password
-      });
-      txt = JSON.stringify(data);*/
 });

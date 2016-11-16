@@ -6,13 +6,28 @@
         "password": "admin1234"
     }, {
         "id": 2,
-        "login": "d",
-        "name": "d",
-        "password": "d"
+        "login": "Losnen",
+        "name": "Samuel",
+        "password": "$2a$08$S.dXfY3/Dij7egYY.zdFDeup5SSEAIOODdC9PNZfFSK74/8R346/G"
     }, {
         "id": 3,
+        "login": "ddd",
+        "name": "ddd",
+        "password": "$2a$08$Lfs8HfbKZGnOfzNcw3iB5.Ia1gMaK5f8KNvTCK1v4HBsn3V7IEUrO"
+    }, {
+        "id": 4,
         "login": "dddd",
-        "name": "dd",
-        "password": "dd"
+        "name": "dddd",
+        "password": "$2a$08$nmd1PQ8IX0kM.7GvdP77VuxSAhus1htWWNbx9AwRftLo/KNlszMP2"
+    }, {
+        "id": 5,
+        "login": "lolo",
+        "name": "lolo",
+        "password": "$2a$08$/M26NjggfRKBTYJjWmshdOfe2QgoswkxqAvzocSMPZgPGDdQXm5KC"
+    }, {
+        "id": 6,
+        "login": "Admin",
+        "name": "Administrador",
+        "password": "$2a$08$nKuxd2urqsdLFRmjmHYf5OzMyopEkhWLfcLZ9VjB3IH1H73siznaW"
     }]
 }

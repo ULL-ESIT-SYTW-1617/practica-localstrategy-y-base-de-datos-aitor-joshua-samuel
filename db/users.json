@@ -1,8 +1,8 @@
 {
     "users": [{
-        "id" : 1,
+        "id": 1,
         "login": "admin",
         "name": "Administrador",
-        "password": "admin1234"
+        "password": "$2a$08$nKuxd2urqsdLFRmjmHYf5OzMyopEkhWLfcLZ9VjB3IH1H73siznaW"
     }]
 }

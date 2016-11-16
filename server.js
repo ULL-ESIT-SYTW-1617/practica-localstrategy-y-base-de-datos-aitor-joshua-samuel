@@ -1,22 +1,30 @@
 var express = require('express');
 var passport = require('passport');
 var Strategy = require('passport-local').Strategy;
+var bcrypt = require('bcrypt');
 var db = require('./db');
 
 
 passport.use(new Strategy(
     (username, password, cb) => {
+
         db.users.findByUsername(username, (err, user) => {
-            if (err) {
-                return cb(err);
-            }
             if (!user) {
                 return cb(null, false);
             }
-            if (user.password != password) {
-                return cb(null, false);
+            if (err) {
+                return cb(err);
             }
-            return cb(null, user);
+            bcrypt.compare(password, user.password, function(err, res) {
+                if (err) {
+                    console.log(err);
+                }
+                if (res == false) {
+                    return cb(null, false);
+                } else {
+                    return cb(null, user);
+                }
+            });
         });
     }));
 
@@ -55,7 +63,7 @@ app.use(require('express-session')({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/libro',require('connect-ensure-login').ensureLoggedIn(),(req, res) => {
+app.get('/libro', require('connect-ensure-login').ensureLoggedIn(), (req, res) => {
     res.sendFile(__dirname + '/gh-pages/readme.html');
 });
 
@@ -90,4 +98,5 @@ app.get('/profile',
     });
 
 
+console.log("Server running on localhost 3000");
 app.listen(3000);

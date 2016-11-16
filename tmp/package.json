@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^0.8.7",
+    "bcryptjs": "^2.3.0",
     "fs-extended": "^0.2.1",
     "inquirer": "^1.2.3",
     "read-json": "^1.0.3",
