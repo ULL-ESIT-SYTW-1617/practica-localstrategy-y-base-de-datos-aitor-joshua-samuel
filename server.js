@@ -112,5 +112,10 @@ app.get('/profile', require('connect-ensure-login').ensureLoggedIn(),
     });
 
 
-console.log("Server running on localhost 3000");
-app.listen(3000);
+function random() {
+    return Math.floor(Math.random() * (4000 - 3000)) + 3000;
+}
+var a = random();
+console.log("Server running on localhost");
+console.log(a);
+app.listen(a);
