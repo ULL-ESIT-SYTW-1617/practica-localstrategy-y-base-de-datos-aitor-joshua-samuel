@@ -2,7 +2,12 @@
     "users": [{
         "id": 1,
         "login": "admin",
-        "name": "Administrador",
-        "password": "$2a$08$nKuxd2urqsdLFRmjmHYf5OzMyopEkhWLfcLZ9VjB3IH1H73siznaW"
+        "name": "admin",
+        "password": "$2a$08$uTVpk71YDqPUXQFq6qTKbeN9rO9n6ZItE4MGsFem10m9qUcPIuKGe"
+    }, {
+        "id": 2,
+        "login": "alu",
+        "name": "alumno",
+        "password": "$2a$08$bWPt48bDWX871eHXzN2rq.tj18AruelfpxakOXKyqlOMBVSM4b5RC"
     }]
 }

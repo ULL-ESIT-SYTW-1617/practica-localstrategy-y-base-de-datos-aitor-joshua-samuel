@@ -90,8 +90,11 @@ app.get('/password', require('connect-ensure-login').ensureLoggedIn(),
 
 app.post('/newpw', (req, res) => {
 
+    console.log(req.user.login);
+    console.log(req.body.pass.new +"--" +req.body.pass.old);
     if (req.body.pass.new == req.body.pass.old) {
-        db.users.changePassword(req.user,req.body.pass.new);
+        console.log("hola");
+        db.users.changePassword(req.user.login,req.body.pass.new);
         res.redirect('/profile');
     } else {
         res.redirect('/password');
@@ -111,11 +114,11 @@ app.get('/profile', require('connect-ensure-login').ensureLoggedIn(),
         });
     });
 
-
+/*
 function random() {
     return Math.floor(Math.random() * (4000 - 3000)) + 3000;
 }
 var a = random();
 console.log("Server running on localhost");
-console.log(a);
-app.listen(a);
+console.log(a);*/
+app.listen(3000);

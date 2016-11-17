@@ -31,6 +31,8 @@
     "fs-extended": "^0.2.1",
     "gulp": "^3.9.1",
     "inquirer": "^1.2.3",
+    "json-update": "^3.0.0",
+    "jsonfile": "^2.4.0",
     "morgan": "^1.6.1",
     "passport": "^0.2.2",
     "passport-local": "^1.0.0",

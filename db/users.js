@@ -1,5 +1,11 @@
 var records = require('./users.json').users;
+var json = require('json-update');
+
 var bcrypt = require('bcrypt');
+var fs = require('fs-extended');
+var readjson = require('readjson');
+
+
 
 exports.findById = (id, cb) => {
     process.nextTick(() => {
@@ -32,11 +38,17 @@ exports.changePassword = (username, password) => {
             } else {
                 for (var i = 0; i < records.length; i++) {
                     if (records[i].login == username) {
-                      console.log(hola);
-                        records[i].password = password;
+                        records[i] = {
+                          id : records[i].id,
+                          login : records[i].login,
+                          name : records[i].name,
+                          password : hash
+                        }
+                        console.log(records[i]);
                     }
                 }
             }
         });
     });
+
 }
