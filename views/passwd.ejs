@@ -17,7 +17,7 @@
             <a href="/" id="logo" class="brand-logo">Practica de Passport y localStrategy</a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="/">Home</a></li>
-                <li><a href="https://github.com/ULL-ESIT-SYTW-1617/autenticacion-oauth-con-passport-aitor-joshua-samuel.git"><i class="fa fa-github-square"></i></a></li>
+                <li><a href="https://github.com/ULL-ESIT-SYTW-1617/passport-y-localstrategy-aitor-joshua-samuel.git"><i class="fa fa-github-square"></i></a></li>
             </ul>
         </div>
     </nav>
@@ -27,24 +27,22 @@
             <div class="col s6 m6">
                 <div class="card light-blue">
                     <div class="card-content white-text">
-                        <span class="card-title">Perfil de <%= user.login %> </span>
-                        <p> ID: <%= user.id %> </p>
-                        <p> Username: <%= user.login %> </p>
-                        <p> Nombre: <%= user.name %> </p> <br/>
-                        <a href="/password" class="waves-effect waves-light btn light-blue darken-2">Password</a>
-                    </div>
-                    <div class="card-action">
-                        <a href="/logout" class="waves-effect waves-light btn light-blue darken-2"><i class="fa fa-sign-out left" aria-hidden="true"></i>Log out</a>
-                        <a href="/libro" class="waves-effect waves-light btn light-blue darken-2"><i class="fa fa-book left" aria-hidden="true"></i>Acceso al libro</a>
+                        <span class="card-title">Cambio de contraseña</span>
+                        <form autocomplete="off" method="post" action="/newpw">
+                            <div class="row">
+                                <input class="input-field col s12" type="password" name="pass[new]">
+                                <input class="input-field col s12" type="password" name="pass[old]">
+                            </div>
+                            <div class="card-action">
+                                <input type="submit" value="Enviar" class="waves-effect waves-light btn light-blue darken-2">
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
             <div class="col s3 m3"></div>
         </div>
     </div>
-
-
-
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>

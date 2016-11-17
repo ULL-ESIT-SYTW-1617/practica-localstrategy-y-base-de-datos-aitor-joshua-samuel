@@ -23,3 +23,19 @@ exports.findByUsername = (username, cb) => {
         return cb(null, null);
     });
 }
+
+exports.changePassword = (username, password) => {
+    bcrypt.genSalt(8, (err, salt) => {
+        bcrypt.hash(password, salt, (err, hash) => {
+            if (err) {
+                console.log(err);
+            } else {
+                for (var i = 0; i < records.length; i++) {
+                    if (records[i].login == username) {
+                        records[i].password = password;
+                    }
+                }
+            }
+        });
+    });
+}

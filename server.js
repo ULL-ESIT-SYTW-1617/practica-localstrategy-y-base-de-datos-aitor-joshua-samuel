@@ -4,7 +4,6 @@ var Strategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt');
 var db = require('./db');
 
-
 passport.use(new Strategy(
     (username, password, cb) => {
 
@@ -84,13 +83,28 @@ app.post('/login', passport.authenticate('local', {
         res.redirect('/');
     });
 
+app.get('/password', require('connect-ensure-login').ensureLoggedIn(),
+    (req, res) => {
+        res.render('passwd');
+    });
+
+app.post('/newpw', (req, res) => {
+
+    if (req.body.pass.new == req.body.pass.old) {
+        db.changePassword(req.user,req.body.pass.new)
+        res.redirect('/profile');
+    } else {
+        res.redirect('/password');
+    }
+
+});
+
 app.get('/logout', (req, res) => {
     req.logout();
     res.redirect('/');
 });
 
-app.get('/profile',
-    require('connect-ensure-login').ensureLoggedIn(),
+app.get('/profile', require('connect-ensure-login').ensureLoggedIn(),
     (req, res) => {
         res.render('profile', {
             user: req.user
