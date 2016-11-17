@@ -1,5 +1,5 @@
 var records = require('./users.json').users;
-
+var bcrypt = require('bcrypt');
 
 exports.findById = (id, cb) => {
     process.nextTick(() => {
@@ -32,6 +32,7 @@ exports.changePassword = (username, password) => {
             } else {
                 for (var i = 0; i < records.length; i++) {
                     if (records[i].login == username) {
+                      console.log(hola);
                         records[i].password = password;
                     }
                 }

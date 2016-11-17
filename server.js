@@ -91,7 +91,7 @@ app.get('/password', require('connect-ensure-login').ensureLoggedIn(),
 app.post('/newpw', (req, res) => {
 
     if (req.body.pass.new == req.body.pass.old) {
-        db.changePassword(req.user,req.body.pass.new)
+        db.users.changePassword(req.user,req.body.pass.new);
         res.redirect('/profile');
     } else {
         res.redirect('/password');
