@@ -3,6 +3,9 @@ var passport = require('passport');
 var Strategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt');
 var db = require('./db');
+var rename =require('./models/rename')
+
+rename.renameIndex();
 
 passport.use(new Strategy(
     (username, password, cb) => {
@@ -46,7 +49,7 @@ var app = express();
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-app.use(express.static(__dirname + '/gh-pages'));
+app.use(express.static(__dirname + '/_book'));
 app.use(require('morgan')('combined'));
 app.use(require('cookie-parser')());
 app.use(require('body-parser').urlencoded({
@@ -63,7 +66,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.get('/libro', require('connect-ensure-login').ensureLoggedIn(), (req, res) => {
-    res.sendFile(__dirname + '/gh-pages/readme.html');
+    res.sendFile(__dirname + '/_book/readme.html');
 });
 
 app.get('/', (req, res) => {
@@ -114,11 +117,5 @@ app.get('/profile', require('connect-ensure-login').ensureLoggedIn(),
         });
     });
 
-/*
-function random() {
-    return Math.floor(Math.random() * (4000 - 3000)) + 3000;
-}
-var a = random();
-console.log("Server running on localhost");
-console.log(a);*/
+
 app.listen(3000);
