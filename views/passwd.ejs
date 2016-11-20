@@ -30,8 +30,12 @@
                         <span class="card-title">Cambio de contraseña</span>
                         <form autocomplete="off" method="post" action="/newpw">
                             <div class="row">
-                                <input class="input-field col s12" type="password" name="pass[new]">
-                                <input class="input-field col s12" type="password" name="pass[old]">
+                                <div class="input-field col s12">
+                                    <p>Contraseña nueva:</p>
+                                    <input type="password" name="pass[new]">
+                                    <p>Repita contraseña nueva:</p>
+                                    <input type="password" name="pass[old]">
+                                </div>
                             </div>
                             <div class="card-action">
                                 <input type="submit" value="Enviar" class="waves-effect waves-light btn light-blue darken-2">

@@ -38,9 +38,7 @@ var createUser = () => {
             var passwd;
             var id_ = file.users.length + 1;
             var config = JSON.stringify(file);
-            console.log(config);
             var data = JSON.parse(config);
-            console.log(data);
             var hashing = new Promise((resolve, reject) => {
                 bcrypt.genSalt(8, (err, salt) => {
                     bcrypt.hash(answers.password, salt, (err, hash) => {

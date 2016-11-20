@@ -3,7 +3,7 @@ var passport = require('passport');
 var Strategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt');
 var db = require('./db');
-var rename =require('./models/rename')
+var rename = require('./models/rename')
 
 rename.renameIndex();
 
@@ -93,11 +93,8 @@ app.get('/password', require('connect-ensure-login').ensureLoggedIn(),
 
 app.post('/newpw', (req, res) => {
 
-    console.log(req.user.login);
-    console.log(req.body.pass.new +"--" +req.body.pass.old);
     if (req.body.pass.new == req.body.pass.old) {
-        console.log("hola");
-        db.users.changePassword(req.user.login,req.body.pass.new);
+        db.users.changePassword(req.user.login, req.body.pass.new);
         res.redirect('/profile');
     } else {
         res.redirect('/password');
