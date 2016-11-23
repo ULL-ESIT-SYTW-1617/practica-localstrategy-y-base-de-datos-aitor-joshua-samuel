@@ -3,6 +3,7 @@ var fs = require('fs-extended');
 var readjson = require('readjson');
 var bcrypt = require('bcrypt');
 
+
 //login, name, password (encrypted)}
 var createUser = () => {
 
