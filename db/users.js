@@ -8,6 +8,15 @@ var readjson = require('readjson');
 var Dropbox = require('dropbox');
 var Fs = require('fs');
 var path = require('path');
+var mysql = require('mysql');
+var dataBase = require('./dataBase.json');
+
+var connection = mysql.createConnection({
+    host: dataBase.dbHost,
+    user: dataBase.dbUser,
+    password: dataBase.dbPassword,
+    database: dataBase.dbDatabase
+});
 
 
 exports.findById = (id, cb) => {
@@ -31,13 +40,19 @@ exports.findById = (id, cb) => {
 
 exports.findByUsername = (username, cb) => {
     process.nextTick(() => {
-        for (var i = 0, len = records.length; i < len; i++) {
-            var record = records[i];
-            if (record.login === username) {
-                return cb(null, record);
+        connection.query("SELECT * FROM login WHERE name = '" + username + "'", function(err, rows, fields) {
+
+            if (err) {
+                console.log(err);
             }
-        }
-        return cb(null, null);
+            console.log(rows[0]);
+
+            if (rows[0]) {
+                cb(null, rows[0]);
+            } else {
+                cb(new Error('User ' + id + ' does not exist'));
+            }
+        });
     });
 }
 
