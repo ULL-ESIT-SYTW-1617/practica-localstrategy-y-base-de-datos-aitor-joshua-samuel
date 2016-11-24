@@ -10,28 +10,19 @@ var Fs = require('fs');
 var path = require('path');
 
 
-var dbx = new Dropbox({
-    accessToken: datos.token
-
-});
-dbx.sharingGetSharedLinkFile({
-        url: datos.url
-    })
-    .then(function(data) {
-        Fs.writeFile("./db/" + data.name, data.fileBinary, 'binary', function(err) {
-            if (err) {
-                throw err;
-            }
-            console.log('File: ' + data.name + ' saved.');
-        });
-    })
-    .catch(function(err) {
-        console.log(err);
-    });
-
 exports.findById = (id, cb) => {
     process.nextTick(() => {
-        var idx = id - 1;
+      connection.query("SELECT * FROM usuarios WHERE Rutinas = '" + req.query.nombre +"'",function(err, rows, fields) {
+
+      if(err) throw err;
+
+      console.log(rows);
+      if(rows.length != 0) {
+          res.json(rows);
+      }else {
+          res.json("No se encuentra en la BBDD");
+      }
+  });
         if (records[idx]) {
             cb(null, records[idx]);
         } else {
@@ -68,33 +59,6 @@ exports.changePassword = (username, password) => {
                         }
                     }
                 }
-
-                Fs.readFile(path.join(__dirname, '/users.json'), 'utf8', function(err, contents) {
-                    if (err) {
-                        console.log('Error: ', err);
-                    }
-
-                    dbx.filesDelete({
-                            path: '/users.json'
-                        })
-                        .then(function(response) {
-                            console.log(response);
-                        })
-                        .catch(function(err) {
-                            console.log(err);
-                        });
-
-                    dbx.filesUpload({
-                            path: '/users.json',
-                            contents: contents
-                        })
-                        .then(function(response) {
-                            console.log(response);
-                        })
-                        .catch(function(err) {
-                            console.log(err);
-                        });
-                });
             }
         });
     });
