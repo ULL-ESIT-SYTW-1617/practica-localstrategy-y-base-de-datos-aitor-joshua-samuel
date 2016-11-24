@@ -12,22 +12,20 @@ var path = require('path');
 
 exports.findById = (id, cb) => {
     process.nextTick(() => {
-      connection.query("SELECT * FROM usuarios WHERE Rutinas = '" + req.query.nombre +"'",function(err, rows, fields) {
+        connection.query("SELECT * FROM login WHERE id = '" + id + "'", function(err, rows, fields) {
 
-      if(err) throw err;
+            if (err) {
+                console.log(err);
+            }
+            console.log(rows[0]);
 
-      console.log(rows);
-      if(rows.length != 0) {
-          res.json(rows);
-      }else {
-          res.json("No se encuentra en la BBDD");
-      }
-  });
-        if (records[idx]) {
-            cb(null, records[idx]);
-        } else {
-            cb(new Error('User ' + id + ' does not exist'));
-        }
+            if (rows[0]) {
+                cb(null, rows[0]);
+            } else {
+                cb(new Error('User ' + id + ' does not exist'));
+            }
+        });
+
     });
 }
 
