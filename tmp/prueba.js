@@ -17,3 +17,10 @@ connection.query("SELECT * FROM login WHERE id = '1'", function(err, rows, field
     }
     console.log(rows[0]);
 });
+connection.query("SELECT * FROM login WHERE name = 'admin'", function(err, rows, fields) {
+
+    if (err) {
+        console.log(err);
+    }
+    console.log(rows[0]);
+});
