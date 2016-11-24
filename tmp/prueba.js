@@ -10,7 +10,7 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
-connection.query("SELECT * FROM  WHERE ID = 1", function(err, rows, fields) {
+connection.query("SELECT * FROM login WHERE id = '1'", function(err, rows, fields) {
 
     if (err) {
         console.log(err);
