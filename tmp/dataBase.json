@@ -1,0 +1,6 @@
+{
+  "dbHost": "host",
+  "dbUser": "user",
+  "dbPassword": "secret",
+  "dbDatabase": "database"
+}
