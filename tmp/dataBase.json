@@ -1,6 +1,6 @@
 {
-  "dbHost": "host",
-  "dbUser": "user",
-  "dbPassword": "secret",
-  "dbDatabase": "database"
+  "dbHost": "localhost",
+  "dbUser": "root",
+  "dbPassword": "aitorjoshuasamuel",
+  "dbDatabase": "SYTW"
 }
