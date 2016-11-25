@@ -61,7 +61,7 @@ exports.changePassword = (username, password) => {
             if (err) {
                 console.log(err);
             } else {
-                connection.query("UPDATE login SET password = '" + hash + "' login WHERE name = '" + username + "'", function(err, result) {
+                connection.query("UPDATE login SET password = '" + hash + "'WHERE name = '" + username + "'", function(err, result) {
                     if (err) throw err;
 
                     console.log('changed ' + result.changedRows + ' rows');
