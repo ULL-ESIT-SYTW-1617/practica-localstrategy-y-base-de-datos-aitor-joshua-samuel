@@ -61,12 +61,10 @@ exports.changePassword = (username, password) => {
             if (err) {
                 console.log(err);
             } else {
-                connection.query("UPDATE login SET password = '" + hash + "' login WHERE name = '" + username + "'", function(err, rows, fields) {
+                connection.query("UPDATE login SET password = '" + hash + "' login WHERE name = '" + username + "'", function(err, result) {
+                    if (err) throw err;
 
-                    if (err) {
-                        console.log(err);
-                    }
-                    console.log("Contraseña cambiada con éxito");
+                    console.log('changed ' + result.changedRows + ' rows');
                 });
             }
         });
