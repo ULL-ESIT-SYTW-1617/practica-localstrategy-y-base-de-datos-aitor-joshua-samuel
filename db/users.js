@@ -25,8 +25,6 @@ exports.findById = (id, cb) => {
             if (err) {
                 console.log(err);
             }
-            console.log(rows[0]);
-
             if (rows[0]) {
                 cb(null, rows[0]);
             } else {
@@ -44,8 +42,6 @@ exports.findByUsername = (username, cb) => {
             if (err) {
                 console.log(err);
             }
-            console.log(rows[0]);
-
             if (rows[0]) {
                 cb(null, rows[0]);
             } else {

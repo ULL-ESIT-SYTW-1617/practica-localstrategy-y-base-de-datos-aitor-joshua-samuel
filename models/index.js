@@ -53,17 +53,7 @@ var createUser = () => {
             });
             hashing.then((hashpass) => {
 
-                data.users.push({
-                    id: id_,
-                    login: answers.login,
-                    name: answers.name,
-                    password: hashpass
-                });
-                fs.writeJSON('./db/users.json', data, (err) => {
-                    if (err) {
-                        console.log(err);
-                    }
-                });
+                //Insert aquí
 
             }, (err) => {
                 console.log("Fallo");
