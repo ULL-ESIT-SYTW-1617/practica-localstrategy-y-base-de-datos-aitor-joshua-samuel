@@ -62,16 +62,13 @@ exports.changePassword = (username, password) => {
             if (err) {
                 console.log(err);
             } else {
-                for (var i = 0; i < records.length; i++) {
-                    if (records[i].login == username) {
-                        records[i] = {
-                            id: records[i].id,
-                            login: records[i].login,
-                            name: records[i].name,
-                            password: hash
-                        }
+                connection.query("UPDATE login SET password = '" + hash + "' login WHERE name = '" + username + "'", function(err, rows, fields) {
+
+                    if (err) {
+                        console.log(err);
                     }
-                }
+                    console.log("Contraseña cambiada con éxito");
+                });
             }
         });
     });
