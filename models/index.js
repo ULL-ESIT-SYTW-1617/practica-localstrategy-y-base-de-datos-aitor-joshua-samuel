@@ -1,10 +1,7 @@
 var inquirer = require('inquirer');
 var fs = require('fs-extended');
-var readjson = require('readjson');
 var bcrypt = require('bcrypt');
 
-
-//login, name, password (encrypted)}
 var createUser = () => {
 
     var questions = [{
@@ -16,6 +13,10 @@ var createUser = () => {
         name: 'name',
         message: 'Nombre: '
     }, {
+        type: 'input',
+        name: 'id',
+        message: 'ID: '
+    }, {
         type: 'password',
         name: 'password',
         message: 'Introduzca la constraseña del usuario: '
@@ -23,48 +24,38 @@ var createUser = () => {
 
     inquirer.prompt(questions).then((answers) => {
 
-
-        var promise = new Promise((resolve, reject) => {
-            readjson('./db/users.json', (error, json) => {
-                if (error) {
-                    console.error(error.message);
-                    reject("Error");
-                } else {
-                    resolve(json);
-                }
-            });
-        });
-        promise.then((file) => {
-
-            var passwd;
-            var id_ = file.users.length + 1;
-            var config = JSON.stringify(file);
-            var data = JSON.parse(config);
-            var hashing = new Promise((resolve, reject) => {
-                bcrypt.genSalt(8, (err, salt) => {
-                    bcrypt.hash(answers.password, salt, (err, hash) => {
-                        if (err) {
-                            reject(err);
-                        } else {
-                            resolve(hash);
-                        }
-                    });
+        var hashing = new Promise((resolve, reject) => {
+            bcrypt.genSalt(8, (err, salt) => {
+                bcrypt.hash(answers.password, salt, (err, hash) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(hash);
+                    }
                 });
             });
-            hashing.then((hashpass) => {
+        });
+        hashing.then((hashpass) => {
 
-                //Insert aquí
+            var post = {
+                id: answers.id,
+                login: answers.login,
+                name: answers.name,
+                password: hashpass
+            };
 
-            }, (err) => {
-                console.log("Fallo");
+            connection.query('INSERT INTO registro SET ?', post, function(error) {
+                if (error) {
+                    console.log(error.message);
+                } else {
+                    console.log('Usuario añadido con éxito');
+                }
             });
 
         }, (err) => {
             console.log("Fallo");
         });
-
     });
-
 }
 
 module.exports.createUser = createUser;
