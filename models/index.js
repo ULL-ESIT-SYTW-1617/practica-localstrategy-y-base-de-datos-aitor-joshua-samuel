@@ -1,6 +1,15 @@
 var inquirer = require('inquirer');
 var fs = require('fs-extended');
 var bcrypt = require('bcrypt');
+var mysql = require('mysql');
+var dataBase = require('../db/dataBase.json');
+
+var connection = mysql.createConnection({
+    host: dataBase.dbHost,
+    user: dataBase.dbUser,
+    password: dataBase.dbPassword,
+    database: dataBase.dbDatabase
+});
 
 var createUser = () => {
 
@@ -44,7 +53,7 @@ var createUser = () => {
                 password: hashpass
             };
 
-            connection.query('INSERT INTO registro SET ?', post, function(error) {
+            connection.query('INSERT INTO login SET ?', post, function(error) {
                 if (error) {
                     console.log(error.message);
                 } else {

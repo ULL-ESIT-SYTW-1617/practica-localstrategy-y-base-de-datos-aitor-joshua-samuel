@@ -1,5 +1,4 @@
 var records = require('./users.json').users;
-
 var json = require('json-update');
 var bcrypt = require('bcrypt');
 var fs = require('fs-extended');
