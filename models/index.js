@@ -60,7 +60,7 @@ var createUser = () => {
                     console.log('Usuario añadido con éxito');
                 }
             });
-
+            connection.end();
         }, (err) => {
             console.log("Fallo");
         });
