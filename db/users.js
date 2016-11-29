@@ -19,7 +19,7 @@ var connection = mysql.createConnection({
 
 exports.findById = (id, cb) => {
     process.nextTick(() => {
-        connection.query("SELECT * FROM login WHERE id = '" + id + "'", function(err, rows, fields) {
+        connection.query("SELECT * FROM login WHERE id = '" + id + "'", (err, rows, fields) => {
 
             if (err) {
                 console.log(err);
@@ -36,7 +36,7 @@ exports.findById = (id, cb) => {
 
 exports.findByUsername = (username, cb) => {
     process.nextTick(() => {
-        connection.query("SELECT * FROM login WHERE name = '" + username + "'", function(err, rows, fields) {
+        connection.query("SELECT * FROM login WHERE name = '" + username + "'", (err, rows, fields) => {
 
             if (err) {
                 console.log(err);
@@ -56,7 +56,7 @@ exports.changePassword = (username, password) => {
             if (err) {
                 console.log(err);
             } else {
-                connection.query("UPDATE login SET password = '" + hash + "'WHERE name = '" + username + "'", function(err, result) {
+                connection.query("UPDATE login SET password = '" + hash + "'WHERE name = '" + username + "'", (err, result) => {
                     if (err) throw err;
 
                     console.log('changed ' + result.changedRows + ' rows');

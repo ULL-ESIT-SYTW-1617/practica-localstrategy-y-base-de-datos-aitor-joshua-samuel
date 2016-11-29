@@ -53,7 +53,7 @@ var createUser = () => {
                 password: hashpass
             };
 
-            connection.query('INSERT INTO login SET ?', post, function(error) {
+            connection.query('INSERT INTO login SET ?', post, (error) => {
                 if (error) {
                     console.log(error.message);
                 } else {
