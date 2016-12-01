@@ -20,7 +20,7 @@ USE `sytw` ;
 -- -----------------------------------------------------
 -- Table `mydb`.`USUARIOS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sytw`.`USUARIOS` (
+CREATE TABLE IF NOT EXISTS `sytw`.`login` (
   `name` VARCHAR(45) NULL COMMENT '',
   `login` VARCHAR(45) NOT NULL COMMENT '',
   `id` INT NOT NULL COMMENT '',
